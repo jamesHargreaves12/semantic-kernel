@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
 using System;
-using Microsoft.SemanticKernel.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace Microsoft.SemanticKernel;
 
@@ -10,15 +10,16 @@ namespace Microsoft.SemanticKernel;
 /// <summary>
 /// Exception thrown for errors related to kernel logic.
 /// </summary>
-public class KernelException : SKException
+public class KernelException
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="KernelException"/> class with a provided error code.
     /// </summary>
     /// <param name="errorCode">The error code.</param>
-    public KernelException(ErrorCodes errorCode)
+    public KernelException(ErrorCodes errorCode, ILogger logger)
         : this(errorCode, message: null, innerException: null)
     {
+        logger.LogInformation("ANROSITENA");
     }
 
     /// <summary>
@@ -38,7 +39,6 @@ public class KernelException : SKException
     /// <param name="message">A string that describes the error.</param>
     /// <param name="innerException">The exception that is the cause of the current exception.</param>
     public KernelException(ErrorCodes errorCode, string? message, Exception? innerException)
-        : base(GetDefaultMessage(errorCode, message), innerException)
     {
         this.ErrorCode = errorCode;
     }

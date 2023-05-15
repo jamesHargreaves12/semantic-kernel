@@ -4,10 +4,9 @@
     <AssemblyName>Microsoft.SemanticKernel.Abstractions</AssemblyName>
     <RootNamespace>Microsoft.SemanticKernel</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <Import Project="$(RepoRoot)/dotnet/nuget/nuget-package.props" />
-  <Import Project="$(RepoRoot)/dotnet/src/InternalUtilities/InternalUtilities.props" />
 
   <PropertyGroup>
     <!-- NuGet Package Settings -->
@@ -17,16 +16,10 @@
 
   <ItemGroup>
     <!--Setting version overrides to minimum supported version, to maximize compatibility.-->
-    <PackageReference Include="Microsoft.Bcl.HashCode" VersionOverride="[1.1.0, )" />
-    <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="[6.0.0, )" />
-    <PackageReference Include="System.Linq.Async" VersionOverride="[6.0.1, )" />
-    <PackageReference Include="System.Text.Json" VersionOverride="[6.0.0, )" />
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="[1.1.0, )" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="System.Linq.Async" Version="[6.0.1, )" />
+    <PackageReference Include="System.Text.Json" Version="[6.0.0, )" />
   </ItemGroup>
 
-  <ItemGroup>
-    <InternalsVisibleTo Include="Microsoft.SemanticKernel.Core" PublicKey="$(StrongNamePublicKey)"/>
-    <InternalsVisibleTo Include="SemanticKernel.UnitTests" PublicKey="$(StrongNamePublicKey)"/>
-    <InternalsVisibleTo Include="IntegrationTests" PublicKey="$(StrongNamePublicKey)"/>
-    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" PublicKey="$(StrongNamePublicKey)"/> <!-- Moq -->
-  </ItemGroup>
 </Project>
